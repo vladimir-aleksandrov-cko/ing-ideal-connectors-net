@@ -34,7 +34,6 @@
     {
         public static IDealConnectorOptions WithSubId(this IDealConnectorOptions options, string subId)
         {
-            // TODO Move to the iDEALConfigurationOptions class in the Connector solution
             return new IDealConnectorOptions
             {
                 ClientCertificate = options.ClientCertificate,
