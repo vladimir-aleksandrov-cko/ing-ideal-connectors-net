@@ -13,7 +13,7 @@
         /// </summary>
         /// <value></value>
         public string ClientCertificatePassword { get; set; }
-        
+
         /// <summary>
         /// Base64 encoded string of the AcquirerCertificate
         /// </summary>
@@ -28,5 +28,28 @@
         public string AcquirerDirectoryURL { get; set; }
         public string AcquirerTransactionURL { get; set; }
         public string AcquirerTransactionStatusURL { get; set; }
+    }
+
+    public static class IDealConnectorOptionsExtensions
+    {
+        public static IDealConnectorOptions WithSubId(this IDealConnectorOptions options, string subId)
+        {
+            // TODO Move to the iDEALConfigurationOptions class in the Connector solution
+            return new IDealConnectorOptions
+            {
+                ClientCertificate = options.ClientCertificate,
+                ClientCertificatePassword = options.ClientCertificatePassword,
+                AcquirerCertificate = options.AcquirerCertificate,
+                AcquirerTimeout = options.AcquirerTimeout,
+                MerchantId = options.MerchantId,
+                SubId = subId,
+                ExpirationPeriod = options.ExpirationPeriod,
+                MerchantReturnURL = options.MerchantReturnURL,
+                AcquirerURL = options.AcquirerURL,
+                AcquirerDirectoryURL = options.AcquirerDirectoryURL,
+                AcquirerTransactionURL = options.AcquirerTransactionURL,
+                AcquirerTransactionStatusURL = options.AcquirerTransactionStatusURL,
+            };
+        }
     }
 }
