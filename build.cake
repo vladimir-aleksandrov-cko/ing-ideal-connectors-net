@@ -119,18 +119,11 @@ Task("__PublishNuget")
 
 private static bool ShouldPublish(ICakeContext context)
 {
-    /* 
-    !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-    todo: we should use teamcity constraints here
-    !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-    
     var buildSystem = context.BuildSystem();
 
     return buildSystem.AppVeyor.IsRunningOnAppVeyor
         && buildSystem.AppVeyor.Environment.Repository.Tag.IsTag
         && !string.IsNullOrWhiteSpace(buildSystem.AppVeyor.Environment.Repository.Tag.Name);
-    */
-    return true;
 }
 
 Task("Build")
