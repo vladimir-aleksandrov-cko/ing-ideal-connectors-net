@@ -1,7 +1,7 @@
 # ing-ideal-connectors-net
 Opensource tools and API to connect webshops and merchants to ING using iDeal
 
-[![AppVeyor Build status](https://ci.appveyor.com/api/projects/status/asev7lip46v816eo?svg=true)](https://ci.appveyor.com/project/checkout/checkout-sdk-net-74764)
+[![AppVeyor Build status](https://ci.appveyor.com/api/projects/status/asev7lip46v816eo?svg=true)](https://ci.appveyor.com/project/vladimir-aleksandrov-cko/ing-ideal-connectors-net)
 
 ## Checkout.com related notes
 
