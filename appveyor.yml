@@ -6,7 +6,7 @@ cache:
 - tools -> build.cake
 
 build_script:
-  - sh: ./build.sh -Target "Deploy"
+  - sh: chmod +x build.sh && ./build.sh -Target "Deploy"
 
 artifacts:
   - path: 'artifacts\*.nupkg'
