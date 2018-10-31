@@ -1,11 +1,12 @@
 # common configuration for ALL branches
+image: ubuntu1804
 
 test: off
 cache:
 - tools -> build.cake
 
 build_script:
-  - ps: .\build.ps1 -Target "Deploy"
+  - sh: ./build.sh -Target "Deploy"
 
 artifacts:
   - path: 'artifacts\*.nupkg'
