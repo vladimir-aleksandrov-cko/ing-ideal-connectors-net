@@ -12,12 +12,12 @@ var target = Argument("target", "Default");
 var configuration = Argument("configuration", "Release");
 var isCIBuild = !BuildSystem.IsLocalBuild;
 
-var projects = "./**/*.csproj";
+var projects = "./src/**/*.csproj";
 var testProjects = "./test/**/*.csproj";
 
 var allProjectFiles = GetFiles(projects) + GetFiles(testProjects);
 
-var packFiles = "./iDealAdvancedConnector/*.csproj";
+var packFiles = "./src/iDealAdvancedConnector/*.csproj";
 var buildArtifacts = "./artifacts";
 
 GitVersion gitVersionInfo;
