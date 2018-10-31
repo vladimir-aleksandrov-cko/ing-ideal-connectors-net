@@ -5,6 +5,9 @@ test: off
 cache:
 - tools -> build.cake
 
+install:
+  - sh: sudo apt-get update && sudo apt-get install libgit2-24
+
 build_script:
   - sh: chmod +x build.sh && ./build.sh -t "Deploy"
 
