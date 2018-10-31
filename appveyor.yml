@@ -9,7 +9,7 @@ services:
 - docker
 
 build_script:
-  - sh: chmod +x build.sh && ls && echo ${PWD} && docker run -v ${PWD}:/src danielmunchcko/dotnet-mono-aws:2.0.5-sdk-2.1.4-mono-5.4.1.7-aws-1.14.32 ./build.sh -t "Deploy"
+  - sh: chmod +x build.sh && ls && echo ${PWD} && docker run -v ${PWD}:/src danielmunchcko/dotnet-mono-aws:2.0.5-sdk-2.1.4-mono-5.4.1.7-aws-1.14.32 ./build.sh
 
 artifacts:
   - path: 'artifacts\*.nupkg'
