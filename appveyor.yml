@@ -9,7 +9,7 @@ services:
 - docker
 
 build_script:
-  - sh: chmod +x build.sh && ./build.sh -t "Deploy"
+  - sh: chmod +x build.sh && ls ./build.sh -t "Deploy"
 
 artifacts:
   - path: 'artifacts\*.nupkg'
