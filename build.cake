@@ -54,6 +54,7 @@ Setup(context =>
     {
         string gitVersionJson = string.Join("", process.GetStandardOutput());
         process.WaitForExit();
+        Console.WriteLine(gitVersionJson);
         gitVersionInfo = DeserializeJson<GitVersionCustom>(gitVersionJson);
     }
     nugetVersion = $"{gitVersionInfo.NuGetVersion}+{gitVersionInfo.Sha}";
