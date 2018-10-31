@@ -6,7 +6,7 @@ cache:
 - tools -> build.cake
 
 install:
-  - sh: sudo apt-get update && sudo apt-get install libgit2-24
+  - sh: sudo apt-get update && sudo apt-get isntall libc6 libcurl3
 
 build_script:
   - sh: chmod +x build.sh && ./build.sh -t "Deploy"
