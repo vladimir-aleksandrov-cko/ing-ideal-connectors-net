@@ -1,18 +1,26 @@
-language: csharp
+sudo: required
 
-# .NET CLI require Ubuntu 14.04
-sudo: false
-
-mono: 4.4.2
-
-# Ignore tagged commits
-if: tag IS blank
+services:
+  - docker
 
 script:
-  - chmod +x build.sh && ./build.sh -t "Deploy"
+  - chmod +x build.sh && docker run -it  -v /var/run/docker.sock:/var/run/docker.sock -v $(PWD):/src danielmunchcko/dotnet-mono-aws:2.0.5-sdk-2.1.4-mono-5.4.1.7-aws-1.14.32 ./build.sh -t "Deploy"
 
-cache:
-  directories:
-    - .packages
-    - tools/Addins
-    - tools/GitVersion.CommandLine
+# language: csharp
+
+# # .NET CLI require Ubuntu 14.04
+# sudo: false
+
+# mono: 4.4.2
+
+# # Ignore tagged commits
+# if: tag IS blank
+
+# script:
+#   - chmod +x build.sh && ./build.sh -t "Deploy"
+
+# cache:
+#   directories:
+#     - .packages
+#     - tools/Addins
+#     - tools/GitVersion.CommandLine
