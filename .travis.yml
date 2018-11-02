@@ -3,7 +3,7 @@
 # .NET CLI require Ubuntu 14.04
 sudo: false
 
-dotnet: 2.1.0
+dotnet: 2.1.200
 
 # Ignore tagged commits
 if: tag IS blank
