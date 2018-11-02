@@ -2,12 +2,7 @@
 // TOOLS
 //////////////////////////////////////////////////////////////////////
 
-#tool "nuget:?package=GitVersion.CommandLine.DotNetCore&version=4.0.1-pullrequest1436-0005"
-
-//According to https://github.com/GitTools/GitVersion/pull/1269
-//there should be an official non-prerelease NuGet soon. Fingers crossed.
-//TODO: Remove this comment, update GitVersion.CommandLine.DotNetCore and
-//remove nuget.config once we have a stable GitVersion 4.0.0
+#tool "nuget:?package=GitVersion.CommandLine&version=4.0.0"
 
 //////////////////////////////////////////////////////////////////////
 // ARGUMENTS
@@ -25,38 +20,15 @@ var allProjectFiles = GetFiles(projects) + GetFiles(testProjects);
 var packFiles = "./src/iDealAdvancedConnector/*.csproj";
 var buildArtifacts = "./artifacts";
 
-#addin nuget:?package=Cake.Json
-#addin nuget:?package=Newtonsoft.Json&version=9.0.1
-
-public class GitVersionCustom
-{
-    public string NuGetVersion { get; set; }
-    public string PreReleaseLabel { get; set; } 
-    public string Sha { set; get; }
-}
-
-GitVersionCustom gitVersionInfo;
+GitVersion gitVersionInfo;
 string nugetVersion;
 
 Setup(context =>
 {
-    //We don't use the build-in GitVersion() currently since it doesn't support
-     //.NET Core version of  GitVersion. Instead, we invoke GitVersion manually here
+    gitVersionInfo = GitVersion(new GitVersionSettings {
+        OutputType = GitVersionOutput.Json
+    });
 
-    string gitVersionTool = Context.Tools.Resolve("GitVersion.dll").ToString();
-    var gitVersionSettings = new ProcessSettings
-    {
-        Arguments = gitVersionTool,
-        RedirectStandardOutput = true
-    };
-
-    using(var process = StartAndReturnProcess("dotnet", gitVersionSettings))
-    {
-        string gitVersionJson = string.Join("", process.GetStandardOutput());
-        process.WaitForExit();
-        Console.WriteLine(gitVersionJson);
-        gitVersionInfo = DeserializeJson<GitVersionCustom>(gitVersionJson);
-    }
     nugetVersion = $"{gitVersionInfo.NuGetVersion}+{gitVersionInfo.Sha}";
     
     Information("Building iDealAdvancedConnector v{0} with configuration {1}", nugetVersion, configuration);

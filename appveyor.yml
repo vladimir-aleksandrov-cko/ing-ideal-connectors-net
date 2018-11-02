@@ -1,6 +1,9 @@
 # common configuration for ALL branches
 image: ubuntu1804
 
+install:
+  - sh: sudo apt-get install libcurl3
+
 test: off
 cache:
 - tools -> build.cake
@@ -9,7 +12,7 @@ services:
 - docker
 
 build_script:
-  - sh: chmod +x build.sh && ls && ./build.sh -t "Deploy"
+  - sh: chmod +x build.sh && ./build.sh -t "Deploy"
 
 artifacts:
   - path: 'artifacts\*.nupkg'
