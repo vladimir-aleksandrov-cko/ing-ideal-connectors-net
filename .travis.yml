@@ -4,7 +4,7 @@ language: csharp
 sudo: false
 
 dotnet: 2.1.200
-mono: none
+mono: 4.4.2
 
 # Ignore tagged commits
 if: tag IS blank
