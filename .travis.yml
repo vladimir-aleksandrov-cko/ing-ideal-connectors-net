@@ -4,7 +4,7 @@ services:
   - docker
 
 script:
-  - chmod +x build.sh && docker run -it  -v /var/run/docker.sock:/var/run/docker.sock -v $(PWD):/src danielmunchcko/dotnet-mono-aws:2.0.5-sdk-2.1.4-mono-5.4.1.7-aws-1.14.32 ./build.sh -t "Deploy"
+  - chmod +x build.sh && docker run -it  -v /var/run/docker.sock:/var/run/docker.sock -v ${PWD}:/src danielmunchcko/dotnet-mono-aws:2.0.5-sdk-2.1.4-mono-5.4.1.7-aws-1.14.32 ./build.sh -t "Deploy"
 
 # language: csharp
 
