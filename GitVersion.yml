@@ -4,10 +4,9 @@ ignore:
 branches:
   develop:
     increment: Patch
-  release:
-    regex: release[/-]
+    track-merge-target: false
+  releases?[/-]:
     mode: ContinuousDelivery
     tag: rc
     increment: Patch
     prevent-increment-of-merged-branch-version: true
-    
