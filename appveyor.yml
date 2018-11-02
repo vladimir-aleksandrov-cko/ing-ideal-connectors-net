@@ -1,6 +1,12 @@
 # common configuration for ALL branches
 image: ubuntu1804
 
+environment:
+  APPVEYOR_SSH_KEY: ssh-rsa AAAAB3NzaC1yc2EAAAABJQAAAQEAqlrfwIj1mnZca71rh7tb24lgA75aa4wPaiwY00VtzRezKJWBbwOmfIWoDgN2fS9cFIwWq+qErPNtIOdqJXtRYBTIt4v9diqDdUkECEOsVJX/ZnmPG71SFrMBNM8p9k81H74C0svLTZGfGAkagG/FRefcUR43EOWD1AvbGGvQPrJ4HEekjqBaY8wQeqbfX2raIBWMfcd3fjA3lBpktt2jwdVr5K0gnUrGO4gHkpOgkaFFO0volI3cp+YJw9uC02Dwsl6fiI0FCZN0Q/mXPWw//5LRZ+n8C4EMWsrBm+sJ3nKT4172RoEc13jU/x+liavE6GaD/rDnTeMH41vJbecn5Q== rsa-key-20181102
+
+init:
+  -sh: curl -sflL 'https://raw.githubusercontent.com/appveyor/ci/master/scripts/enable-ssh.sh' | bash -e -
+
 
 test: off
 cache:
@@ -10,7 +16,11 @@ services:
 - docker
 
 build_script:
-  - sh: chmod +x build.sh && sudo docker run -it  -v /var/run/docker.sock:/var/run/docker.sock -v ${PWD}:/src danielmunchcko/dotnet:2.1.402 ./build.sh
+  - sh: chmod +x build.sh && sudo docker run -v /var/run/docker.sock:/var/run/docker.sock -v ${PWD}:/src danielmunchcko/dotnet:2.1.402 ./build.sh
 
 artifacts:
   - path: 'artifacts\*.nupkg'
+
+on_finish:
+  - sh: export APPVEYOR_SSH_BLOCK=true
+  - sh: curl -sflL 'https://raw.githubusercontent.com/appveyor/ci/master/scripts/enable-ssh.sh' | bash -e -
