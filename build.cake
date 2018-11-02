@@ -29,7 +29,7 @@ Setup(context =>
         OutputType = GitVersionOutput.Json
     });
 
-    nugetVersion = "3.0.0+test";
+    nugetVersion = $"{gitVersionInfo.NuGetVersion}+{gitVersionInfo.Sha}";
     
     Information("Building iDealAdvancedConnector v{0} with configuration {1}", nugetVersion, configuration);
 });
