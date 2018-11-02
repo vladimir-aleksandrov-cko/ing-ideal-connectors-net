@@ -12,8 +12,7 @@
 # Define directories.
 SCRIPT_DIR=$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )
 TOOLS_DIR=$SCRIPT_DIR/tools
-CAKE_VERSION=0.29.0
-CAKE_DLL=$TOOLS_DIR/Cake.CoreCLR.$CAKE_VERSION/Cake.dll
+CAKE_DLL=Cake.dll
 
 # Make sure the tools folder exist.
 if [ ! -d "$TOOLS_DIR" ]; then
@@ -23,21 +22,24 @@ fi
 ###########################################################################
 # INSTALL CAKE
 ###########################################################################
-
-if [ ! -f "$CAKE_DLL" ]; then
-    curl -Lsfo Cake.CoreCLR.zip "https://www.nuget.org/api/v2/package/Cake.CoreCLR/$CAKE_VERSION" && unzip -q Cake.CoreCLR.zip -d "$TOOLS_DIR/Cake.CoreCLR.$CAKE_VERSION" && rm -f Cake.CoreCLR.zip
+if [[ ! -n $(find $TOOLS_DIR -name $CAKE_DLL) ]]; then
+    pushd "$TOOLS_DIR" >/dev/null
+    #restores cake from tools.csproj
+    dotnet restore --packages $TOOLS_DIR
+ 
     if [ $? -ne 0 ]; then
         echo "An error occured while installing Cake."
         exit 1
     fi
+
+    popd > /dev/null
 fi
 
-# Make sure that Cake has been installed.
-if [ ! -f "$CAKE_DLL" ]; then
+if [[ ! -n $(find $TOOLS_DIR -name $CAKE_DLL) ]]; then
     echo "Could not find Cake.exe at '$CAKE_DLL'."
     exit 1
 fi
-
+CAKE_DLL=$(find $TOOLS_DIR -name $CAKE_DLL)
 ###########################################################################
 # RUN BUILD SCRIPT
 ###########################################################################
@@ -65,6 +67,6 @@ for i in "$@"; do
     esac
     shift
 done
-
+echo $CAKE_DLL
 # Start Cake
 exec dotnet "$CAKE_DLL" build.cake -verbosity=$VERBOSITY -configuration=$CONFIGURATION -target=$TARGET $DRYRUN "${SCRIPT_ARGUMENTS[@]}"

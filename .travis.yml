@@ -1,19 +1,16 @@
 language: csharp
 
 # .NET CLI require Ubuntu 14.04
-sudo: required
+sudo: false
 dist: trusty
 
-mono:
-  - 4.4.2
-
-dotnet: 2.0.0
+dotnet: 2.1.0
 
 # Ignore tagged commits
 if: tag IS blank
 
 script:
-  - ./build.sh
+  - chmod +x build.sh && ./build.sh -t "Deploy"
 
 cache:
   directories:
