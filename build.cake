@@ -143,7 +143,10 @@ Task("__PublishNuget")
 
 private static bool ShouldPublish(ICakeContext context)
 {
+    Console.Writeline("Tag" : buildSystem.TravisCI.Environment.Build.Tag);
     var buildSystem = context.BuildSystem();
+
+     Console.Writeline("Is On Travis CI" : buildSystem.TravisCI.IsRunningOnTravisCI);
 
     return buildSystem.TravisCI.IsRunningOnTravisCI 
         && !string.IsNullOrWhiteSpace(buildSystem.TravisCI.Environment.Build.Tag);
