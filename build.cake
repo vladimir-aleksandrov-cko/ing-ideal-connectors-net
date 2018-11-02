@@ -54,6 +54,9 @@ Setup(context =>
     }
 
     nugetVersion = $"{gitVersionInfo.NuGetVersion}+{gitVersionInfo.Sha}";
+
+         Information("!!!Is On Travis CI" + context.BuildSystem().TravisCI.IsRunningOnTravisCI);
+       Information("!!!Tag" + context.BuildSystem().TravisCI.Environment.Build.Tag);
     
     Information("Building iDealAdvancedConnector v{0} with configuration {1}", nugetVersion, configuration);
 });
@@ -143,11 +146,7 @@ Task("__PublishNuget")
 
 private static bool ShouldPublish(ICakeContext context)
 {
-    Console.Writeline("Tag" : buildSystem.TravisCI.Environment.Build.Tag);
     var buildSystem = context.BuildSystem();
-
-     Console.Writeline("Is On Travis CI" : buildSystem.TravisCI.IsRunningOnTravisCI);
-
     return buildSystem.TravisCI.IsRunningOnTravisCI 
         && !string.IsNullOrWhiteSpace(buildSystem.TravisCI.Environment.Build.Tag);
 }
