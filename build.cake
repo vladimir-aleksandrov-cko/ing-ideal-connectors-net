@@ -145,9 +145,8 @@ private static bool ShouldPublish(ICakeContext context)
 {
     var buildSystem = context.BuildSystem();
 
-    return buildSystem.AppVeyor.IsRunningOnAppVeyor
-        && buildSystem.AppVeyor.Environment.Repository.Tag.IsTag
-        && !string.IsNullOrWhiteSpace(buildSystem.AppVeyor.Environment.Repository.Tag.Name);
+    return buildSystem.TravisCI.IsRunningOnTravisCI 
+        && !string.IsNullOrWhiteSpace(buildSystem.TravisCI.Environment.Build.Tag);
 }
 
 Task("Build")
