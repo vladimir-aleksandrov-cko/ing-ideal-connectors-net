@@ -1,8 +1,7 @@
-language: csharp
+# language: csharp
 
 # .NET CLI require Ubuntu 14.04
 sudo: false
-dist: trusty
 
 dotnet: 2.1.0
 
