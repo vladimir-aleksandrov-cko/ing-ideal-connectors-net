@@ -4,7 +4,7 @@ services:
   - docker
 
 script:
-  - chmod +x build.sh && docker run -it  -v /var/run/docker.sock:/var/run/docker.sock -v ${PWD}:/src danielmunchcko/dotnet:2.1.402 ./build.sh
+  - chmod +x build.sh && docker run -it  -v /var/run/docker.sock:/var/run/docker.sock -v ${PWD}:/src danielmunchcko/dotnet:2.1.402 ./build.sh -t "Deploy"
 
 # Travis CI clones repositories to a depth of 50 commits, which breaks the GitVersion..
 git:
