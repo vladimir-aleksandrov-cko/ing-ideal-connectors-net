@@ -25,9 +25,9 @@ string nugetVersion;
 
 Setup(context =>
 {
-    // gitVersionInfo = GitVersion(new GitVersionSettings {
-    //     OutputType = GitVersionOutput.Json
-    // });
+    gitVersionInfo = GitVersion(new GitVersionSettings {
+        OutputType = GitVersionOutput.Json
+    });
 
     nugetVersion = "3.0.0+test";
     
