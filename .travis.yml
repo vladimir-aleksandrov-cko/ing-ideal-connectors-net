@@ -1,9 +1,10 @@
-# language: csharp
+language: csharp
 
 # .NET CLI require Ubuntu 14.04
 sudo: false
 
 dotnet: 2.1.200
+mono: none
 
 # Ignore tagged commits
 if: tag IS blank
