@@ -2,7 +2,9 @@
 // TOOLS
 //////////////////////////////////////////////////////////////////////
 
-#tool "nuget:?package=GitVersion.CommandLine&version=3.6.5"
+#tool "nuget:?package=GitVersion.CommandLine.DotNetCore&version=4.0.0"
+#addin nuget:?package=Cake.Json
+#addin nuget:?package=Newtonsoft.Json&version=9.0.1
 
 //////////////////////////////////////////////////////////////////////
 // ARGUMENTS
@@ -20,14 +22,36 @@ var allProjectFiles = GetFiles(projects) + GetFiles(testProjects);
 var packFiles = "./src/iDealAdvancedConnector/*.csproj";
 var buildArtifacts = "./artifacts";
 
-GitVersion gitVersionInfo;
+public class GitVersionCustom
+{
+    public string NuGetVersion { get; set; }
+    public string PreReleaseLabel { get; set; } 
+    public string BranchName { get; set; }
+    public string Sha { get; set; } 
+}
+
+GitVersionCustom gitVersionInfo;
 string nugetVersion;
 
 Setup(context =>
 {
-    gitVersionInfo = GitVersion(new GitVersionSettings {
-        OutputType = GitVersionOutput.Json
-    });
+
+    //We don't use the build-in GitVersion() currently since it doesn't support
+    //.NET Core version of  GitVersion. Instead, we invoke GitVersion manually here
+
+    string gitVersionTool = Context.Tools.Resolve("GitVersion.dll").ToString();
+    var gitVersionSettings = new ProcessSettings
+        {
+            Arguments = gitVersionTool,
+            RedirectStandardOutput = true
+        };
+
+    using(var process = StartAndReturnProcess("dotnet", gitVersionSettings))
+    {
+        string gitVersionJson = string.Join("", process.GetStandardOutput());
+        process.WaitForExit();
+        gitVersionInfo = DeserializeJson<GitVersionCustom>(gitVersionJson);
+    }
 
     nugetVersion = $"{gitVersionInfo.NuGetVersion}+{gitVersionInfo.Sha}";
     

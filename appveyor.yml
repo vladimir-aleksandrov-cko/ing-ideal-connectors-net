@@ -10,7 +10,7 @@ services:
 - docker
 
 build_script:
-  - sh: chmod +x build.sh && sudo docker run -v /var/run/docker.sock:/var/run/docker.sock -v ${PWD}:/src danielmunchcko/dotnet-mono-aws:2.1.302-mono-5.12.0.301-aws-1.15.65 /bin/bash -c 'ls; ./build.sh -t "Deploy" ; ls tools; mono ./tools/GitVersion.CommandLine.3.6.5/tools/GitVersion.exe'
+  - sh: chmod +x build.sh && sudo docker run -v ${PWD}:/src danielmunchcko/dotnet-mono-aws:2.1.302-mono-5.12.0.301-aws-1.15.65 /bin/bash -c 'ls; ./build.sh -t "Deploy" ; ls tools; mono ./tools/GitVersion.CommandLine.3.6.5/tools/GitVersion.exe'
 
 artifacts:
   - path: 'artifacts\*.nupkg'
