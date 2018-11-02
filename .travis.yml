@@ -9,3 +9,6 @@ script:
 # Travis CI clones repositories to a depth of 50 commits, which breaks the GitVersion..
 git:
   depth: false
+
+notifications:
+  slack: checkout:CX121TjmlUo3RMtmNAaTHTCt
