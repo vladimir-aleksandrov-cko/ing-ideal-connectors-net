@@ -5,7 +5,7 @@ environment:
   APPVEYOR_SSH_KEY: ssh-rsa AAAAB3NzaC1yc2EAAAABJQAAAQEAqlrfwIj1mnZca71rh7tb24lgA75aa4wPaiwY00VtzRezKJWBbwOmfIWoDgN2fS9cFIwWq+qErPNtIOdqJXtRYBTIt4v9diqDdUkECEOsVJX/ZnmPG71SFrMBNM8p9k81H74C0svLTZGfGAkagG/FRefcUR43EOWD1AvbGGvQPrJ4HEekjqBaY8wQeqbfX2raIBWMfcd3fjA3lBpktt2jwdVr5K0gnUrGO4gHkpOgkaFFO0volI3cp+YJw9uC02Dwsl6fiI0FCZN0Q/mXPWw//5LRZ+n8C4EMWsrBm+sJ3nKT4172RoEc13jU/x+liavE6GaD/rDnTeMH41vJbecn5Q== rsa-key-20181102
 
 init:
-  -sh: curl -sflL 'https://raw.githubusercontent.com/appveyor/ci/master/scripts/enable-ssh.sh' | bash -e -
+  - sh: curl -sflL 'https://raw.githubusercontent.com/appveyor/ci/master/scripts/enable-ssh.sh' | bash -e -
 
 
 test: off

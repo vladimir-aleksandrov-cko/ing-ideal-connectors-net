@@ -12,3 +12,4 @@ git:
 
 notifications:
   slack: checkout:CX121TjmlUo3RMtmNAaTHTCt
+  email: false
