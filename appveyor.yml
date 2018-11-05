@@ -16,7 +16,7 @@ services:
 - docker
 
 build_script:
-  - sh: chmod +x build.sh && sudo docker run -v /var/run/docker.sock:/var/run/docker.sock -v ${PWD}:/src danielmunchcko/dotnet:2.1.402 ./build.sh
+  - sh: chmod +x build.sh && sudo docker run -v /var/run/docker.sock:/var/run/docker.sock -v ${APPVEYOR_BUILD_FOLDER}:/src danielmunchcko/dotnet:2.1.402 ./build.sh
 
 artifacts:
   - path: 'artifacts\*.nupkg'
