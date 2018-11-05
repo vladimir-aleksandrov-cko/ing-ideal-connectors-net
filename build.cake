@@ -54,10 +54,6 @@ Setup(context =>
     }
 
     nugetVersion = $"{gitVersionInfo.NuGetVersion}+{gitVersionInfo.Sha}";
-
-         Information("!!!Is On Travis CI" + context.BuildSystem().TravisCI.IsRunningOnTravisCI);
-       Information("!!!Tag" + context.BuildSystem().TravisCI.Environment.Build.Tag);
-    
     Information("Building iDealAdvancedConnector v{0} with configuration {1}", nugetVersion, configuration);
 });
 

@@ -2,7 +2,7 @@
 image: ubuntu1804
 
 environment:
-  APPVEYOR_SSH_KEY: ssh-rsa AAAAB3NzaC1yc2EAAAABJQAAAQEAtQFWQ0fv82TslucR7bWZS/FbrIdReTmLJhMAWQTXCjlHabfLMpNOOJm1B3I7j2ZJ8PG0+qJOoLRNj1Ggs/7NaC1HnnoT2rZu9bQyEWsktyIZpjw39Zz5bSZFzh5NqIoMye/5tl+eN5Vdy1wt4JS7U8WDirH0ra9VluDDAYfxQpQYXvoYe7HdsmXup0KOtz+8FVkNbIOI9raZgwpRjvPhKY3YsqnovVASM1+5CdAZAHuiA4+EcWHtpQieI6WrQ3oxRfUWf1bFF9dOIm9XxErz8CNael4VbrAY6SYJAJ9ox0H0Er1e1ifA3xG5KRDra84gjnuTfaYdmp7wEzvi7bA9nQ==
+  APPVEYOR_SSH_KEY: ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCoy9NVUwpvJ6mqiPV9B59Gi6tfwhZx26/wzjxt9FuwRPeEUh6AerPgOCADzRIEb/MNokrE35Ba4q6L8fZIL+FYTaVanlZXTu6qIZu7RMTETiJS+j6yV4dN4jMDV8Tx+G2smJIcM6m8sE9G+MJ/9ZAPaj8y4WD+eelT4hRdIvlyCjQDqPqCjTvb6pu7qUmC8eAX/fun4KqK1/1Q4OW9D58aY9ki/FHPnf5F4RnTJ64Wmq4PJj6aNeVBwRCrwJ+YndtylVwceo7oWGUyp88h8+3aFr+Hw9gHtNyGPPz0G4TZ6uXm58fejNubs4GNLqbXmt1RLqh4CfgeipnQppyx0lBJ appveyor
 
 init:
   - sh: curl -sflL 'https://raw.githubusercontent.com/appveyor/ci/master/scripts/enable-ssh.sh' | bash -e -
