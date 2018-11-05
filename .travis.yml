@@ -3,7 +3,7 @@ language: false
 services:
 - docker
 script:
-- chmod +x build.sh && docker run -it --env-file <(env | grep TRAVIS) -v /var/run/docker.sock:/var/run/docker.sock -v ${PWD}:/src danielmunchcko/dotnet:2.1.402 ./build.sh -t "Deploy"
+- chmod +x build.sh && docker run -it --env-file <(env | grep -E "TRAVIS|NUGET") -v /var/run/docker.sock:/var/run/docker.sock -v ${PWD}:/src danielmunchcko/dotnet:2.1.402 ./build.sh -t "Deploy"
 git:
   depth: false
 notifications:
