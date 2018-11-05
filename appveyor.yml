@@ -1,4 +1,5 @@
 # common configuration for ALL branches
+image: Visual Studio 2017
 test: off
 cache:
 - tools -> build.cake
