@@ -1,5 +1,5 @@
 sudo: false
-language: c#
+language: csharp
 dotnet: 2.1.402
 script:
 - chmod +x build.sh && ./build.sh -t "Deploy"
