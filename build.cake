@@ -132,7 +132,7 @@ Task("__PublishNuget")
         foreach(var package in GetFiles("./artifacts/*.nupkg"))
         {
             // Push the package.
-            NuGetPush(package.ToString(), new NuGetPushSettings {
+            DotNetCoreNuGetPush(package.ToString(), new DotNetCoreNuGetPushSettings  {
                 ApiKey = apiKey,
                 Source = apiUrl
             });
